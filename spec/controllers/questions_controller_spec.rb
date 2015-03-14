@@ -54,7 +54,6 @@ RSpec.describe QuestionsController, type: :controller do
   describe 'POST #create' do
     context 'with valid attribures' do
       it 'saves the new question on the database' do
-        old_count = Question.count
         expect { post :create, question: attributes_for(:question) }.to change(Question, :count).by(1)
       end
       it 'redirect to show view' do
