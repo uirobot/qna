@@ -32,9 +32,9 @@ RSpec.describe AnswersController, type: :controller do
       it 'does not save to database' do
         expect { post :create, question_id: question, answer: {body:nil} }.to_not change(question.answers, :count)
       end
-      it 'redirect to question' do
+      it 'redirect to new action' do
         post :create, question_id: question, answer: {body:nil}
-        expect(response).to redirect_to(question_path(assigns(:question)))
+        expect(response).to render_template :new
       end
     end
   end
