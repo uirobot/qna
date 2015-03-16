@@ -30,7 +30,7 @@ RSpec.describe AnswersController, type: :controller do
 
     context 'with invalid attributes' do
       it 'does not save to database' do
-        expect { post :create, question_id: question, answer: {body:nil} }.to_not change(question.answers, :count)
+        expect { post :create, question_id: question, answer: {body:nil} }.to_not change(Answer, :count)
       end
       it 'redirect to new action' do
         post :create, question_id: question, answer: {body:nil}
