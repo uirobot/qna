@@ -11,17 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150303092048) do
-=======
 ActiveRecord::Schema.define(version: 20150311120542) do
->>>>>>> lesson-3-basic-tdd
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-<<<<<<< HEAD
-=======
   create_table "answers", force: :cascade do |t|
     t.text     "body"
     t.integer  "question_id"
@@ -31,7 +24,6 @@ ActiveRecord::Schema.define(version: 20150311120542) do
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
->>>>>>> lesson-3-basic-tdd
   create_table "questions", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -39,8 +31,5 @@ ActiveRecord::Schema.define(version: 20150311120542) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
-=======
   add_foreign_key "answers", "questions"
->>>>>>> lesson-3-basic-tdd
 end
