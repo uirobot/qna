@@ -1,0 +1,15 @@
+.col-lg-12
+  h2 Post Question
+.col-lg-8
+  = form_for @question do |f|
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control'
+    .form-group
+      = f.label :body
+      = f.text_area :body, class: 'form-control'
+    = f.submit 'Send question', class: 'btn btn-default'
+.col-lg-4
+  blockquote
+    h4 instructions
+    p some instructions about posting new question

@@ -2,14 +2,14 @@ require 'rails_helper'
 
 feature 'User can create question', 'In order to get answer, User can create question' do
 
+
   scenario 'User can create question' do
     question = create(:question)
     visit new_question_path
     fill_in 'Title', with: question.title
     fill_in 'Body', with: question.body
-    click_on 'Post question'
+    click_on 'Send question'
     expect(page).to have_content 'Your question created'
-    expect(current_path).to eq question_path(question)
   end
 end
 
