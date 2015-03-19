@@ -14,7 +14,14 @@ feature 'User can create question', 'In order to get answer, User can create que
 end
 
 feature 'User can see questions list', 'In order to find question, User can see list of all question' do
-  scenario 'User see list of last questions on index page'
+  scenario 'User see list of last questions on index page' do
+    questions_list = create_list(:question, 3)
+    visit questions_path
+    questions_list.each do |ques|
+      expect(page).to have_content ques[:title]
+    end
+
+  end
 end
 
 feature 'User can post answer', 'In order to answer the question, User can post question answer' do

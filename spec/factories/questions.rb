@@ -8,4 +8,6 @@ FactoryGirl.define do
     title nil
     body nil
   end
+
+
 end
