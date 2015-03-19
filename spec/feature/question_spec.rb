@@ -25,7 +25,17 @@ feature 'User can see questions list', 'In order to find question, User can see 
 end
 
 feature 'User can post answer', 'In order to answer the question, User can post question answer' do
-  scenario 'User go to question and post answer'
+  scenario 'User go to question and post answer' do
+    question = create(:question)
+    answer = create(:answer)
+    visit question_path(question)
+    click_on 'Post answer'
+    fill_in 'Body', with: answer.body
+    click_on 'Send answer'
+
+    expect(current_path).to eq question_path(question)
+    expect(page).to have_content answer.body
+  end
 end
 
 feature 'User can see list of answers on question page', 'In order to find question answer, User can see list of answers on question page' do

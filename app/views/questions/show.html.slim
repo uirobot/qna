@@ -1,0 +1,9 @@
+.col-lg-12
+  h3 = @question.title
+  p = @question.body
+  hr
+  h4 Answers
+  .answers-list
+    = render partial: "single_answer", collection: @answers, as: :answer
+  hr
+  = link_to "Post answer", new_question_answer_path(@question.id), class: 'btn btn-info'
