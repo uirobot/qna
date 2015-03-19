@@ -17,6 +17,7 @@ feature 'User can see questions list', 'In order to find question, User can see 
   scenario 'User see list of last questions on index page' do
     questions_list = create_list(:question, 3)
     visit questions_path
+
     questions_list.each do |ques|
       expect(page).to have_content ques[:title]
     end
@@ -39,5 +40,14 @@ feature 'User can post answer', 'In order to answer the question, User can post 
 end
 
 feature 'User can see list of answers on question page', 'In order to find question answer, User can see list of answers on question page' do
-  scenario 'User go to question page and see answers list'
+  scenario 'User go to question page and see answers list' do
+    question = create(:question)
+    questions_list = create_list(:answer, 3, question: question)
+    visit question_path(question)
+
+    questions_list.size.times do |i|
+      expect(page).to have_content questions_list[i].body
+    end
+  end
+
 end
