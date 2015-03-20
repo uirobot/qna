@@ -1,13 +1,15 @@
 require 'rails_helper'
 
-feature 'User can create question and see questions list', %q{'
+feature 'Authenticate  User can create question', %q{'
   In order to find question,
   User
   can create question and see list of all question'} do
 
   given(:question) { create(:question) }
 
-  scenario 'User can create question' do
+  scenario 'Authenticate user can create question' do
+    user = create(:user)
+    log_in(user)
     visit new_question_path
     fill_in 'Title', with: question.title
     fill_in 'Body', with: question.body
@@ -16,12 +18,10 @@ feature 'User can create question and see questions list', %q{'
     expect(page).to have_content question.title
   end
 
-  scenario 'User see list of last questions on index page' do
-    questions_list = create_list(:question, 3)
+  scenario 'Non authenticate user cant create question' do
     visit questions_path
-    questions_list.each do |ques|
-      expect(page).to have_content ques[:title]
-    end
-
+    click_on 'New Question'
+    expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
+
 end

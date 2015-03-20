@@ -38,9 +38,7 @@ feature 'User register and sign in', %q{
     fill_in 'Email', with: user_mail
     fill_in 'Password', with: user_password
     fill_in 'Password confirmation', with: user_password
-
     click_on 'Sign up'
-
     expect(page).to have_content 'Welcome! You have signed up successfully.'
   end
 
