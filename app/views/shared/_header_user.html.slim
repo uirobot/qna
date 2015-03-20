@@ -1,5 +1,5 @@
 .login-block
   - if current_user
-    p Wellcome, #{current_user.name || current_user.email}
+    p Wellcome, #{current_user.email}! #{link_to "Log out", destroy_user_session_path, method: :delete}.
   - else
-    p Hey, try to #{link_to "Log in", new_user_session_path} or #{link_to "Register", new_user_registration_path }
+    p Hey, try to #{link_to "Sign in", new_user_session_path} or #{link_to "Register", new_user_registration_path }
