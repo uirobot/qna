@@ -16,8 +16,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'slim-rails'
-gem 'capybara'
 
+
+gem 'devise'
 
 
 # Use jquery as the JavaScript library
@@ -54,4 +55,6 @@ end
 
 group :test do
   gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'launchy'
 end

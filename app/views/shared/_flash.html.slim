@@ -1,4 +1,6 @@
-- if flash[:notice]
+- if notice || alert
   .col-lg-12
   .alert.alert-success
-    =flash[:notice]
+    = notice
+  .alert.alert-warning
+    = alert
