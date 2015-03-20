@@ -8,8 +8,11 @@ html
   body
     .container
       .header.clearfix
-        .col-lg-12
-          h2 YASK
-          hr
+        .col-lg-9
+          h2.logo
+            a href=root_path YASK
+        .col-lg-3
+          = render partial: 'shared/header_user'
+      hr
       = render partial: 'shared/flash'
       == yield

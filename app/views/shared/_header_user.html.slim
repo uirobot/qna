@@ -1,0 +1,5 @@
+.login-block
+  - if current_user
+    p Wellcome, #{current_user.name || current_user.email}
+  - else
+    p Hey, try to #{link_to "Log in", new_user_session_path} or #{link_to "Register", new_user_registration_path }

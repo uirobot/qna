@@ -8,13 +8,10 @@ feature 'User sign in', %q{
 
   scenario 'Registered user try to sign in' do
     User.create(email: "user@test.com", password: 'qwerty1234567')
-
     visit new_user_session_path
     fill_in 'Email', with: 'user@test.com'
     fill_in 'Password', with: 'qwerty1234567'
     click_on 'Log in'
-
-    save_and_open_page
 
     expect(page).to have_content 'Signed in successfully'
     expect(current_path).to eq root_path
@@ -31,7 +28,7 @@ feature 'User sign in', %q{
     expect(current_path).to eq new_user_session_path
   end
 
-  scenario 'Пользователь может войти в систему'
+
   scenario 'Пользователь может выйти из системы'
   scenario 'Пользователь может зарегистрироваться в системе'
 
