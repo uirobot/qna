@@ -19,6 +19,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.create(question_params)
+    @question.user = current_user
     if @question.save
       flash[:notice] = "Your question created"
       redirect_to @question
@@ -36,8 +37,13 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.destroy
-    redirect_to questions_path
+    if @question.user == current_user
+      @question.destroy
+      flash[:notice] = 'Question deleted. RIP!'
+    else
+      flash[:notice] = 'Sorry, not your question'
+    end
+      redirect_to questions_path
   end
 
   private

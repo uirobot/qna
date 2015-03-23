@@ -1,4 +1,8 @@
-h4 = link_to question.title, question
+h4
+  = link_to question.title, question
+  .pull-right
+    - if question.user == current_user
+      = link_to 'delete question', question, class: 'delete_answer', method: :delete
 p
   em = question.body
 hr
