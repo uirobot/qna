@@ -1,6 +1,8 @@
 - if notice || alert
   .col-lg-12
-  .alert.alert-success
-    = notice
-  .alert.alert-warning
-    = alert
+  - if notice
+    .alert.alert-success
+      = notice
+  - if alert
+    .alert.alert-warning
+      = alert
