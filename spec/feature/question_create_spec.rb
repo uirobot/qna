@@ -1,10 +1,8 @@
 require 'rails_helper'
-
 feature 'Authenticate  User can create question', %q{'
   In order to find question,
   User
   can create question and see list of all question'} do
-
   given(:question) { create(:question) }
 
   scenario 'Authenticate user can create question' do
@@ -21,8 +19,6 @@ feature 'Authenticate  User can create question', %q{'
 
   scenario 'Non authenticate user cant create question' do
     visit new_question_path
-    
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
-
 end

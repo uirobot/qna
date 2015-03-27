@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
-
   let(:question) { create(:question) }
 
   describe 'GET #index' do
     let(:questions) { create_list(:question, 2) }
     before do
-        get :index
+      get :index
     end
     it 'populates an array of all questions' do
       expect(assigns(:questions)).to match_array(questions)
@@ -67,7 +66,7 @@ RSpec.describe QuestionsController, type: :controller do
 
     context 'with invalid attributes' do
       it 'does not save the question' do
-        expect { post :create, question: attributes_for(:invalid_question)}.to_not change(Question, :count)
+        expect { post :create, question: attributes_for(:invalid_question) }.to_not change(Question, :count)
       end
 
       it 're-renders new view' do
@@ -86,7 +85,7 @@ RSpec.describe QuestionsController, type: :controller do
         expect(assigns(:question)).to eq question
       end
       it 'changes question attributes' do
-        patch :update, id: question, question: { title: 'new title', body: 'new body'}
+        patch :update, id: question, question: { title: 'new title', body: 'new body' }
         question.reload
         expect(question.title).to eq 'new title'
         expect(question.body).to eq 'new body'
@@ -97,7 +96,7 @@ RSpec.describe QuestionsController, type: :controller do
       end
     end
     context 'invalid attributes' do
-      before { patch :update, id: question, question: {title: 'new title', body: nil} }
+      before { patch :update, id: question, question: { title: 'new title', body: nil } }
       it 'does not change question attributes' do
         question.reload
         expect(question.title).to eq 'MyString'
@@ -138,7 +137,5 @@ RSpec.describe QuestionsController, type: :controller do
           expect(response).to redirect_to questions_path
       end
     end
-
   end
-
 end

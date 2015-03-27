@@ -1,10 +1,8 @@
 require 'rails_helper'
-
 feature 'Authenticate User can delete question', %q{'
   In order to remove question,
   Authenticated User
   can delete own question'} do
-
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
   given(:question) { create(:question, user: user) }
@@ -27,5 +25,4 @@ feature 'Authenticate User can delete question', %q{'
     visit questions_path
     expect(page).not_to have_content 'delete question'
   end
-
 end

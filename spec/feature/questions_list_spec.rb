@@ -4,7 +4,6 @@ feature 'Any user can see list of questions', %q{'
   In order to find question,
   Any User
   can see list of questions'} do
-
   given(:question) { create(:question) }
   given!(:questions_list) { create_list(:question, 3) }
 
@@ -14,5 +13,4 @@ feature 'Any user can see list of questions', %q{'
       expect(page).to have_content question.title
     end
   end
-
 end

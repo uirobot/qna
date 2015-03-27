@@ -4,13 +4,11 @@ feature 'Authenticate User can delete answers', %q{'
   In order to remove answers,
   Authenticated User
   can delete own answers'} do
-
-
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
   given(:question) { create(:question, user: user) }
-  given(:user_answer) { create(:answer, question: question, user: user)}
-  given(:user_answer2) { create(:answer, question: question, user: user2)}
+  given(:user_answer) { create(:answer, question: question, user: user) }
+  given(:user_answer2) { create(:answer, question: question, user: user2) }
 
   scenario 'User can delete answers' do
     log_in(user)
@@ -27,5 +25,4 @@ feature 'Authenticate User can delete answers', %q{'
     visit question_path(question)
     expect(page).not_to have_content 'delete answer'
   end
-
 end

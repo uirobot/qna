@@ -5,7 +5,6 @@ feature 'User register and sign in', %q{
   User
   can register and can sign in
 } do
-
   given(:user) { create(:user) }
 
   scenario 'Registered user try to sign in' do
@@ -41,5 +40,4 @@ feature 'User register and sign in', %q{
     click_on 'Sign up'
     expect(page).to have_content 'Welcome! You have signed up successfully.'
   end
-
 end
