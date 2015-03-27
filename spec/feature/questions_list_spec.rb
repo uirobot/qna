@@ -6,12 +6,12 @@ feature 'Any user can see list of questions', %q{'
   can see list of questions'} do
 
   given(:question) { create(:question) }
-  given(:questions_list) { create_list(:question, 3) }
+  given!(:questions_list) { create_list(:question, 3) }
 
   scenario 'User see list of last questions on index page' do
     visit questions_path
-    questions_list.each do |ques|
-      expect(page).to have_content ques[:title]
+    questions_list.each do |question|
+      expect(page).to have_content question.title
     end
   end
 

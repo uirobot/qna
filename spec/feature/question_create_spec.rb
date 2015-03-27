@@ -20,8 +20,8 @@ feature 'Authenticate  User can create question', %q{'
   end
 
   scenario 'Non authenticate user cant create question' do
-    visit questions_path
-    click_on 'New Question'
+    visit new_question_path
+    
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
 

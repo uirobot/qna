@@ -6,13 +6,12 @@ feature 'Any user can see list of answers', %q{'
   can see list of answers inside question'} do
 
   given(:question) { create(:question) }
-  given(:answers_list) { create_list(:answer, 3, question: question) }
+  given!(:answers_list) { create_list(:answer, 3, question: question) }
 
   scenario 'User go to question page and see answers list' do
-
     visit question_path(question)
-    answers_list.size.times do |i|
-      expect(page).to have_content answers_list[i].body
+    answers_list.each do |answer|
+      expect(page).to have_content(answer.body)
     end
   end
 
