@@ -1,11 +1,11 @@
 class AnswersController < ApplicationController
 
-  before_action :load_question, only: [:new, :create, :update, :destroy]
   before_action :authenticate_user!
+  before_action :load_question, only: [:new, :create, :update, :destroy]
 
 
   def new
-    @answer = Answer.new(:question => @question)
+    @answer = Answer.new
   end
 
   def create
@@ -21,16 +21,12 @@ class AnswersController < ApplicationController
 
   def destroy
     @answer = Answer.find(params[:id])
-    if @answer.user == current_user
-      if @answer.destroy
-        flash[:alert] = 'Comment deleted. RIP!'
-      else
-        flash[:alert] = 'Houston, we got a problem...'
-      end
+    if @answer.user_id == current_user.id
+      @answer.destroy ? flash[:alert] = 'Comment deleted. RIP!' : flash[:alert] = 'Houston, we got a problem...'
     else
       flash[:alert] = 'Not your answer, sorry!'
     end
-    redirect_to question_path(@question.id)
+    redirect_to @question
   end
 
   private

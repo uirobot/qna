@@ -6,12 +6,15 @@ feature 'Authenticate User can post answers on question page', %q{'
   can post answer'} do
 
   given(:question) { create(:question) }
+  given(:user) { create(:user) }
+  given(:answer) { create(:answer) }
+  
 
   scenario 'User go to question and post answer' do
-    user = create(:user)
+
     log_in(user)
 
-    answer = create(:answer)
+
     visit question_path(question)
     click_on 'Post answer'
     fill_in 'Body', with: answer.body

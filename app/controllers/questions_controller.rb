@@ -1,13 +1,16 @@
 class QuestionsController < ApplicationController
-  before_action :load_question, only: [:show, :edit, :update, :destroy]
+
   before_action :authenticate_user!, except: [:index, :show]
+
+  before_action :load_question, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @questions = Question.all
   end
 
   def show
-    @answers = Answer.where(:question_id => @question.id)
+    @answers = Answer.where(question: @question)
   end
 
   def new
@@ -37,7 +40,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    if @question.user == current_user
+    if @question.user_id == current_user.id
       @question.destroy
       flash[:notice] = 'Question deleted. RIP!'
     else

@@ -16,6 +16,7 @@ feature 'Authenticate  User can create question', %q{'
     click_on 'Send question'
     expect(page).to have_content 'Your question created'
     expect(page).to have_content question.title
+    expect(page).to have_content question.body
   end
 
   scenario 'Non authenticate user cant create question' do
