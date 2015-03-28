@@ -23,6 +23,7 @@ RSpec.describe AnswersController, type: :controller do
     context 'with correct attributes' do
       it 'save answer to database' do
         expect { post :create, question_id: question, answer: attributes_for(:answer) }.to change(@user.answers, :count).by(1)
+        expect { post :create, question_id: question, answer: attributes_for(:answer) }.to change(question.answers, :count).by(1)
       end
 
       it 'redirect to question page' do
