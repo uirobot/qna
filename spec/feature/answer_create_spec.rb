@@ -19,8 +19,7 @@ feature 'Authenticate User can post answers on question page', %q{('
   end
 
   scenario 'Non authenticated user cant post answer' do
-    visit question_path(question)
-    click_on 'Post answer'
+    visit new_question_path(question)
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
 end

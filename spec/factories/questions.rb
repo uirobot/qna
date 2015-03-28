@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :question do
-    title 'MyString'
+    sequence(:title) { ('a'..'z').to_a.shuffle.join }
     body 'MyText'
   end
 

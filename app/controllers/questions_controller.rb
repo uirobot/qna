@@ -43,7 +43,7 @@ class QuestionsController < ApplicationController
     else
       flash[:notice] = 'Sorry, not your question'
     end
-      redirect_to questions_path
+    redirect_to questions_path
   end
 
   private

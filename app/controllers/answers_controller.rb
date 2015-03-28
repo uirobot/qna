@@ -20,7 +20,7 @@ class AnswersController < ApplicationController
   def destroy
     @answer = Answer.find(params[:id])
     if @answer.user_id == current_user.id
-      @answer.destroy ? flash[:alert] = 'Comment deleted. RIP!' : flash[:alert] = 'We got a problem'
+      flash[:alert] = @answer.destroy ? 'Comment deleted. RIP!' : 'We got a problem'
     else
       flash[:alert] = 'Not your answer, sorry!'
     end

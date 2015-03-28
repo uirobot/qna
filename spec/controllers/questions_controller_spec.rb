@@ -54,9 +54,10 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe 'POST #create' do
     log_in_user
+
     context 'with valid attribures' do
       it 'saves the new question on the database' do
-        expect { post :create, question: attributes_for(:question) }.to change(Question, :count).by(1)
+        expect { post :create, question: attributes_for(:question) }.to change(@user.questions, :count).by(1)
       end
       it 'redirect to show view' do
         post :create, question: attributes_for(:question)
@@ -99,8 +100,8 @@ RSpec.describe QuestionsController, type: :controller do
       before { patch :update, id: question, question: { title: 'new title', body: nil } }
       it 'does not change question attributes' do
         question.reload
-        expect(question.title).to eq 'MyString'
-        expect(question.body).to eq 'MyText'
+        expect(question.title).to eq question.title
+        expect(question.body).to eq question.body
       end
       it 're-renders edit view' do
         expect(response).to render_template :edit
@@ -119,7 +120,7 @@ RSpec.describe QuestionsController, type: :controller do
       end
       it 'redirect to index view' do
         delete :destroy, id: question
-          expect(response).to redirect_to questions_path
+        expect(response).to redirect_to questions_path
       end
     end
 

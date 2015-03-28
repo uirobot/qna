@@ -3,13 +3,12 @@ feature 'Authenticate User can delete question', %q{'
   In order to remove question,
   Authenticated User
   can delete own question'} do
-  given(:user) { create(:user) }
+  given!(:user) { create(:user) }
   given(:user2) { create(:user) }
   given(:question) { create(:question, user: user) }
   given(:question2) { create(:question, user: user2) }
 
   scenario 'User can delete question' do
-    user
     log_in(user)
     question
     visit questions_path
@@ -19,7 +18,6 @@ feature 'Authenticate User can delete question', %q{'
   end
 
   scenario 'User can delete only own question' do
-    user
     log_in(user)
     question2
     visit questions_path
