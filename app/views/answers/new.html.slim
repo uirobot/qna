@@ -1,0 +1,12 @@
+.col-lg-12
+  h2 Post your answer
+.col-lg-12
+  blockquote
+    h4 = @question.title
+    p = @question.body
+  hr
+  = form_for [@question, @answer] do |f|
+    .form-group
+      = f.label :body
+      = f.text_area :body, class: 'form-control'
+    = f.submit 'Send answer', class: 'btn btn-default'

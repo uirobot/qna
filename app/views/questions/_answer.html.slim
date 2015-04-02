@@ -1,0 +1,5 @@
+li.answer-item
+  = answer.body
+  .pull-right
+    - if current_user && answer.user_id == current_user.id
+      = link_to 'delete answer', question_answer_path(@question, answer), class: 'delete_answer', method: :delete
