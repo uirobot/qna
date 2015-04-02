@@ -4,9 +4,3 @@
   blockquote
     h4 = @question.title
     p = @question.body
-  hr
-  = form_for [@question, @answer] do |f|
-    .form-group
-      = f.label :body
-      = f.text_area :body, class: 'form-control'
-    = f.submit 'Send answer', class: 'btn btn-default'
