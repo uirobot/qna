@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
 
   def show
     @answers = Answer.where(question: @question)
+    @answer = @question.answers.build
   end
 
   def new

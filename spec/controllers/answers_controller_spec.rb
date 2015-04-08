@@ -22,20 +22,20 @@ RSpec.describe AnswersController, type: :controller do
 
     context 'with correct attributes' do
       it 'save answer to database' do
-        expect { post :create, question_id: question, answer: attributes_for(:answer) }.to change(@user.answers, :count).by(1)
-        expect { post :create, question_id: question, answer: attributes_for(:answer) }.to change(question.answers, :count).by(1)
+        expect { post :create, question_id: question, answer: attributes_for(:answer), format: :js }.to change(@user.answers, :count).by(1)
+        expect { post :create, question_id: question, answer: attributes_for(:answer), format: :js }.to change(question.answers, :count).by(1)
       end
 
-      it 'redirect to question page' do
-        post :create, question_id: question, answer: attributes_for(:answer)
-        expect(response).to redirect_to(question_path(assigns(:question)))
+      it 'render create js partial' do
+        post :create, question_id: question, answer: attributes_for(:answer), format: :js
+        expect(response).to render_template :create
       end
     end
 
     context 'with invalid attributes' do
       it 'redirect to new action' do
-        post :create, question_id: question, answer: { body: nil }
-        expect(response).to render_template :new
+        post :create, question_id: question, answer: { body: nil }, format: :js
+        expect(response).to render_template :create
       end
     end
   end

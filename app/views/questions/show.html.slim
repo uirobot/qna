@@ -6,4 +6,8 @@
   .answers-list
     = render partial: "answer", collection: @answers, as: :answer
   hr
-  = link_to "Post answer", new_question_answer_path(@question), class: 'btn btn-info'
+  = form_for [@question, @answer], remote: true do |f|
+    .form-group
+      = f.label :body
+      = f.text_area :body, class: 'form-control'
+    = f.submit 'Send answer', class: 'btn btn-default'
