@@ -1,4 +1,4 @@
-require 'rails_helper'
+require_relative 'feature_helper'
 feature 'Authenticate User can delete question', %q{'
   In order to remove question,
   Authenticated User

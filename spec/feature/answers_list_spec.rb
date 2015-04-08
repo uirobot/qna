@@ -1,4 +1,4 @@
-require 'rails_helper'
+require_relative 'feature_helper'
 
 feature 'Any user can see list of answers', %q{'
   In order to find answer,
