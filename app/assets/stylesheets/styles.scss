@@ -17,7 +17,15 @@
 .login-block {
   margin-top:10px;
 }
-.delete_answer {
+.edit-answer {
+  color:green;
+  font-size: 11px;
+  padding-right: 15px;
+}
+.form-group input.inline-edit-form {
+  width:700px;
+}
+.delete-answer {
   font-size:11px;
   color:red;
 }
