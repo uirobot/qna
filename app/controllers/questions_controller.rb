@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @answers = Answer.where(question: @question)
+    @answers = Answer.where(question: @question).order(correct: :desc, created_at: :asc)
     @answer = @question.answers.build
   end
 

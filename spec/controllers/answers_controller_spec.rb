@@ -50,16 +50,15 @@ RSpec.describe AnswersController, type: :controller do
       end
 
       it 'deletes answer' do
-        expect { delete :destroy, question_id: question, id: answer }.to change(question.answers, :count).by(-1)
+        expect { delete :destroy, question_id: question, id: answer, format: :js }.to change(question.answers, :count).by(-1)
       end
-
     end
 
     context 'delete answer of different user' do
 
       it 'deletes answer' do
         answer
-        expect { delete :destroy, question_id: question, id: answer }.to_not change(Answer, :count)
+        expect { delete :destroy, question_id: question, id: answer, format: :js }.to_not change(Answer, :count)
       end
     end
   end

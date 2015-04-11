@@ -22,13 +22,23 @@ class AnswersController < ApplicationController
     end
   end
 
-
   def destroy
     if @answer.user_id == current_user.id
       flash[:alert] = @answer.destroy ? 'Comment deleted. RIP!' : 'We got a problem'
     else
       flash[:alert] = 'Not your answer, sorry!'
     end
+  end
+
+  def correct_answer
+    @answer = Answer.find(params[:id])
+    @question = @answer.question
+    if @question.user_id == current_user.id
+      @answer.best ? flash[:notice] = 'Good good good' : flash[:notice] = 'Problems'
+    else
+      flash[:notice] = 'Slow down, bro'
+    end
+    redirect_to @question
   end
 
   private
