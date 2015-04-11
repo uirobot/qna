@@ -29,7 +29,6 @@ class AnswersController < ApplicationController
     else
       flash[:alert] = 'Not your answer, sorry!'
     end
-    redirect_to @question
   end
 
   private

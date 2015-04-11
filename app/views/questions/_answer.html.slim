@@ -4,4 +4,4 @@ li.answer-item id="answr_#{answer.id}"
   .pull-right
     - if current_user && answer.user_id == current_user.id
       = link_to 'edit answer', edit_question_answer_path(@question, answer), class: 'edit-answer', remote: true
-      = link_to 'delete answer', question_answer_path(@question, answer), class: 'delete-answer', method: :delete
+      = link_to 'delete answer', question_answer_path(@question, answer), class: 'delete-answer', method: :delete, remote: true

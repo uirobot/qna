@@ -53,10 +53,6 @@ RSpec.describe AnswersController, type: :controller do
         expect { delete :destroy, question_id: question, id: answer }.to change(question.answers, :count).by(-1)
       end
 
-      it 'redirect to question page' do
-        delete :destroy, question_id: question, id: answer
-        expect(response).to redirect_to question_path(question)
-      end
     end
 
     context 'delete answer of different user' do
@@ -64,11 +60,6 @@ RSpec.describe AnswersController, type: :controller do
       it 'deletes answer' do
         answer
         expect { delete :destroy, question_id: question, id: answer }.to_not change(Answer, :count)
-      end
-
-      it 'redirect to question page' do
-        delete :destroy, question_id: question, id: answer
-        expect(response).to redirect_to question_path(question)
       end
     end
   end

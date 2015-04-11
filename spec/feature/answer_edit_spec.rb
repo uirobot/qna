@@ -41,7 +41,4 @@ feature 'Authenticate User can edit own answers on question page', %q{('
       expect(page).to have_content('my new answer')
     end
   end
-
-  scenario 'User cannot edit answer of another user'
-
 end

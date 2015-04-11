@@ -10,12 +10,11 @@ feature 'Authenticate User can delete answers', %q{'
   given(:user_answer) { create(:answer, question: question, user: user) }
   given(:user_answer2) { create(:answer, question: question, user: user2) }
 
-  scenario 'User can delete answers' do
+  scenario 'User can delete answers', js: true do
     log_in(user)
     user_answer
     visit question_path(question)
     click_on 'delete answer'
-    expect(current_path).to eq question_path(question)
     expect(page).not_to have_content user_answer.body
   end
 
