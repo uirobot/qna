@@ -1,2 +1,2 @@
 $('#answr_<%= @answer.id %>').empty();
-$('#answr_<%= @answer.id %>').replaceWith('<%= j render partial: "questions/answer", locals: { answer: @answer, question: @question } %>');
+$('#answr_<%= @answer.id %>').replaceWith('<%= j render @answer %>');

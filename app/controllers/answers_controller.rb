@@ -16,10 +16,8 @@ class AnswersController < ApplicationController
   def edit
   end
 
-  def update
-    if !@answer.update(answer_params)
-      render :edit
-    end
+  def update    
+    render :edit unless @answer.update(answer_params)
   end
 
   def destroy
