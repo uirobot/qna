@@ -1,4 +1,4 @@
-require 'rails_helper'
+require_relative 'feature_helper'
 feature 'Authenticate  User can create question', %q{'
   In order to find question,
   User

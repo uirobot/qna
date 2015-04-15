@@ -1,0 +1,3 @@
+$('#answr_<%= @answer.id %> span').hide();
+$('#answr_<%= @answer.id %> .pull-right').hide();
+$('#answr_<%= @answer.id %>').append('<%= j render partial: "edit_form" %>');

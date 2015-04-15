@@ -1,4 +1,4 @@
-require 'rails_helper'
+require_relative 'feature_helper'
 
 feature 'Authenticate User can post answers on question page', %q{('
   In order to post answer,

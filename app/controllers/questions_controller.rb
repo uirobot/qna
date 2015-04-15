@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @answers = Answer.where(question: @question)
+    @answers = @question.answers.best_first
     @answer = @question.answers.build
   end
 
@@ -16,6 +16,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    @question = Question.find(params[:id])
   end
 
   def create

@@ -4,7 +4,7 @@
   hr
   h4 Answers
   .answers-list
-    = render partial: "answer", collection: @answers, as: :answer
+    = render @answers
   hr
   = form_for [@question, @answer], remote: true do |f|
     .form-group
