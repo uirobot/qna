@@ -24,7 +24,7 @@ feature 'Question author can mark correct answer', %q{('
     log_in(user)
     visit question_path(question2)
     within(:css, "li#answr_#{answer2.id}") do
-      expect(page).not_to have_content "correct answer"
+      expect(page).not_to have_content "correct answer "
     end
   end
 

@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @answers = Answer.where(question: @question).best_first
+    @answers = @question.answers.best_first
     @answer = @question.answers.build
   end
 

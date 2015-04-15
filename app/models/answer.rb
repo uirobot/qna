@@ -7,7 +7,7 @@ class Answer < ActiveRecord::Base
   validates :body, presence: true
 
   def best
-    Answer.where(question: self.question).update_all(correct: false)
+    Answer.where(question: question).update_all(correct: false)
     self.update!(correct: true)
   end
 end

@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :load_question, only: [:new, :create, :update, :destroy, :edit]
-  before_action :load_answer, only: [:edit, :update, :destroy]
+  before_action :load_answer, only: [:edit, :update, :destroy, :correct_answer]
 
   def new
     @answer = Answer.new
@@ -16,7 +16,7 @@ class AnswersController < ApplicationController
   def edit
   end
 
-  def update    
+  def update
     render :edit unless @answer.update(answer_params)
   end
 
@@ -29,7 +29,6 @@ class AnswersController < ApplicationController
   end
 
   def correct_answer
-    @answer = Answer.find(params[:id])
     @question = @answer.question
     if @question.user_id == current_user.id
       @answer.best ? flash[:notice] = 'Good good good' : flash[:notice] = 'Problems'
