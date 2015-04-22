@@ -1,6 +1,9 @@
 .col-lg-12
   h3 = @question.title
   p = @question.body
+  ul
+    - @question.attachments.each do |a|
+      = link_to a.file.identifier, a.file.url
   hr
   h4 Answers
   .answers-list

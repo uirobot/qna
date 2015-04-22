@@ -3,4 +3,6 @@ class Question < ActiveRecord::Base
   belongs_to :user
   validates :title, :body, presence: true
   has_many :attachments, as: :attachable
+
+  accepts_nested_attributes_for :attachments
 end
