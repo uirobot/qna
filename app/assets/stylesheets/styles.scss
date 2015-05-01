@@ -41,3 +41,21 @@
     margin: 0 10px;
   }
 }
+.files-attachments {
+  a {
+    display: inline;
+    float: left;
+  }
+  .delete-link a {
+    color:red;
+    margin-left:20px;
+    font-size:11px;
+  }
+}
+.file-item {
+  .delete-link a {
+    color:red;
+    margin-left:20px;
+    font-size:11px;
+  }
+}

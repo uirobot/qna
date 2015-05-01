@@ -4,10 +4,13 @@ Rails.application.routes.draw do
   root to: "questions#index"
 
   resources :questions do
+    delete 'attachment', on: :member
     resources :answers do
       patch 'correct_answer', on: :member
     end
   end
+
+  resources :attachments, only: [:destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -3,10 +3,13 @@ li.answer-item id="answr_#{answer.id}"
     - if answer.correct
       span.label.label-success ANSWER
     = answer.body
-    small
-      - answer.attachments.each do |a|
-        .files-attachments
-          = link_to a.file.identifier, a.file.url
+
+    - answer.attachments.each do |a|
+      .files-attachments
+        = link_to a.file.identifier, a.file.url
+        - if current_user && current_user.id == answer.user_id
+          .delete-link
+            = link_to "delete file", attachment_path(a), method: :delete
 
     - if current_user && current_user.id == @question.user_id
       |  (

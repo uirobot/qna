@@ -3,7 +3,12 @@
   p = @question.body
   ul
     - @question.attachments.each do |a|
-      = link_to a.file.identifier, a.file.url
+      li.file-item
+        = link_to a.file.identifier, a.file.url
+        - if current_user && current_user.id == @question.user_id
+          span.delete-link
+            = link_to "delete file", attachment_path(a), method: :delete
+
   hr
   h4 Answers
   .answers-list

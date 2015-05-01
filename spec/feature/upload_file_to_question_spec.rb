@@ -26,7 +26,6 @@ feature 'Add files to question', %q{
     fill_in 'Body', with: 'this is question body'
     attach_file 'File', "#{Rails.root}/spec/spec_helper.rb"
     click_on 'add file'
-
     within all('.add_file_form').last do
       attach_file 'File', "#{Rails.root}/spec/rails_helper.rb"
     end
