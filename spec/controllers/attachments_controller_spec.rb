@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe AttachmentsController, type: :controller do
-  let(:question) { create(:question) }
-  let(:attachment) { create(:attachment) }
+  let!(:question) { create(:question) }
+  let(:attachment) { create(:attachment, attachable_type: "Question", attachable_id: question.id) }
 
   context 'attachment delete' do
     describe 'DELETE #destroy user question attachment' do
@@ -16,22 +16,18 @@ RSpec.describe AttachmentsController, type: :controller do
       end
       it 'redirect to question page' do
         delete :destroy, id: attachment
-        expect(response).to redirect_to questions_path
+        expect(response).to redirect_to question_path(question)
       end
     end
-    describe 'DELETE #destroy another user question' do
+    describe 'DELETE #destroy another user question attachment' do
       log_in_user
       let(:user2) { create(:user) }
       before do
         question.user = user2
         question.attachments << attachment
       end
-      it 'deletes question' do
+      it 'trying to deletes question' do
         expect { delete :destroy, id: attachment }.to_not change(Attachment, :count)
-      end
-      it 'redirect to index view' do
-        delete :destroy, id: question
-          expect(response).to redirect_to questions_path
       end
     end
   end
