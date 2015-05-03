@@ -2,4 +2,19 @@
   = form_for [@question, @answer], html: {class: 'form-inline'}, method: :patch, remote: true do |f|
     .form-group
       = f.text_field :body, value: @answer.body, class: 'form-control inline-edit-form'
+    hr
+    .form-group
+      ul
+       - @answer.attachments.each do |a|
+         li class="file-item file-id-#{a.id}"
+           = link_to a.file.identifier, a.file.url
+           span.delete-link
+            = link_to "delete file", attachment_path(a), method: :delete, remote: true
+    .clearfix
+    .form-group
+      = f.fields_for :attachments do |attach|
+        = render 'questions/answer_attachments_fields', f: attach
+      h5
+        = link_to_add_association 'add file', f, :attachments, { partial: 'questions/answer_attachments_fields' }
+    .clearfix
     = f.submit 'Изменить', class: 'btn btn-default'

@@ -8,7 +8,7 @@ class AttachmentsController < ApplicationController
       if question.user_id == current_user.id
         attachment.destroy
       end
-      render "question_file.delete"
+      render "question_file_delete"
     end
 
     if attachment.attachable_type == "Answer"
@@ -17,7 +17,7 @@ class AttachmentsController < ApplicationController
         attachment.destroy
         flash[:notice] = 'Attachment destroy'
       end
-      redirect_to question_path(answer.question)
+      render "question_file_delete"
     end
   end
 
