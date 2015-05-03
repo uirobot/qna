@@ -1,13 +1,14 @@
 .col-lg-12
-  h3 = @question.title
+  h3
+    = @question.title
+    - if current_user && current_user.id == @question.user_id
+      = link_to edit_question_path(@question) do
+        = fa_icon "pencil", class: 'text-muted'
   p = @question.body
   ul
     - @question.attachments.each do |a|
       li.file-item
         = link_to a.file.identifier, a.file.url
-        - if current_user && current_user.id == @question.user_id
-          span.delete-link
-            = link_to "delete file", attachment_path(a), method: :delete
 
   hr
   h4 Answers

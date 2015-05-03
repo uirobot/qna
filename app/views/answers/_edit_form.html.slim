@@ -1,4 +1,5 @@
-= form_for [@question, @answer], html: {class: 'form-inline'}, method: :patch, remote: true do |f|
-  .form-group
-    = f.text_field :body, value: @answer.body, class: 'form-control inline-edit-form'
-  = f.submit 'Изменить', class: 'btn btn-default'
+.answer-edit-form
+  = form_for [@question, @answer], html: {class: 'form-inline'}, method: :patch, remote: true do |f|
+    .form-group
+      = f.text_field :body, value: @answer.body, class: 'form-control inline-edit-form'
+    = f.submit 'Изменить', class: 'btn btn-default'

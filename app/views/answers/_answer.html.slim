@@ -1,24 +1,25 @@
 li.answer-item id="answr_#{answer.id}"
   span
     - if answer.correct
-      span.label.label-success ANSWER
+      = fa_icon "check"
     = answer.body
-
-    - answer.attachments.each do |a|
-      .files-attachments
-        = link_to a.file.identifier, a.file.url
-        - if current_user && current_user.id == answer.user_id
-          .delete-link
-            = link_to "delete file", attachment_path(a), method: :delete
-
-    - if current_user && current_user.id == @question.user_id
-      |  (
-      - if answer.correct
-        = link_to "not correct", correct_answer_question_answer_path(@question, answer), method: :patch
-      - else
-        = link_to "correct answer", correct_answer_question_answer_path(@question, answer), method: :patch
-      |  )
-    .pull-right
+    .files-attachments
+      ul
+        - answer.attachments.each do |a|
+          li
+            = fa_icon "file-o", class: 'text-muted'
+            = link_to a.file.identifier, a.file.url
+    .clearfix
+    .answer-features
+      - if current_user && current_user.id == @question.user_id
+        - if answer.correct
+          = link_to correct_answer_question_answer_path(@question, answer), method: :patch do
+            = fa_icon "thumbs-down 2x", class: 'text-muted correct-answer'
+        - else
+          = link_to correct_answer_question_answer_path(@question, answer), method: :patch do
+            = fa_icon "thumbs-up 2x", class: 'text-muted'
       - if current_user && answer.user_id == current_user.id
-        = link_to 'edit answer', edit_question_answer_path(@question, answer), class: 'edit-answer', remote: true
-        = link_to 'delete answer', question_answer_path(@question, answer), class: 'delete-answer', method: :delete, remote: true
+        = link_to edit_question_answer_path(@question, answer), class: 'edit-answer', remote: true do
+          = fa_icon "pencil 2x", class: 'text-muted'
+        = link_to question_answer_path(@question, answer), class: 'delete-answer', method: :delete, remote: true do
+          = fa_icon "remove 2x", class: 'text-muted'
