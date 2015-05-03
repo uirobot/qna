@@ -1,0 +1,7 @@
+.question-edit-form
+  = form_for @question, remote: true do |f|
+    .form-group
+      = f.text_field :title, value: @question.title, class: 'form-control'
+    .form-group
+      = f.text_area :body, value: @question.body, class: 'form-control'
+    = f.submit 'Edit question', class: 'btn btn-default'

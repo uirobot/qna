@@ -1,14 +1,6 @@
 .col-lg-12
-  h3
-    = @question.title
-    - if current_user && current_user.id == @question.user_id
-      = link_to edit_question_path(@question) do
-        = fa_icon "pencil", class: 'text-muted'
-  p = @question.body
-  ul
-    - @question.attachments.each do |a|
-      li.file-item
-        = link_to a.file.identifier, a.file.url
+  #question-body
+    = render @question
 
   hr
   h4 Answers
@@ -19,11 +11,9 @@
     .form-group
       = f.label :body
       = f.text_area :body, class: 'form-control'
-
     .form-group
       = f.fields_for :attachments do |attach|
         = render 'answer_attachments_fields', f: attach
       h5
         = link_to_add_association 'add file', f, :attachments, { partial: 'answer_attachments_fields' }
-
     = f.submit 'Send answer', class: 'btn btn-default'

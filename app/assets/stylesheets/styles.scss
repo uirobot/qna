@@ -17,10 +17,11 @@
       margin-top: 10px;
       margin-bottom: 10px;
       margin-left: 7px;
-
+      opacity:0.5;
+      
       .fa-2x { font-size: 20px; }
       i { margin-right: 15px; }
-      .fa-thumbs-up.text-muted { opacity:0.5;}
+      .fa-thumbs-up.text-muted { }
       .edit-answer {
         color:green;
         font-size: 11px;
@@ -31,6 +32,7 @@
     }
   }
 }
+.question-header a .fa.fa-pencil { margin-left:10px; opacity: 0.5;}
 .logo {
   a {
     padding: 10px 23px;
