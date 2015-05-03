@@ -4,4 +4,15 @@
       = f.text_field :title, value: @question.title, class: 'form-control'
     .form-group
       = f.text_area :body, value: @question.body, class: 'form-control'
+    .form-group
+      = f.fields_for :attachments do |attach|
+        = render 'attachment_fields', f: attach
+      h5
+        = link_to_add_association 'add file', f, :attachments
+    ul
+     - @question.attachments.each do |a|
+       li class="file-item file-id-#{a.id}"
+         = link_to a.file.identifier, a.file.url
+         span.delete-link
+          = link_to "delete file", attachment_path(a), method: :delete, remote: true
     = f.submit 'Edit question', class: 'btn btn-default'

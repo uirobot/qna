@@ -2,14 +2,13 @@ class AttachmentsController < ApplicationController
 
   def destroy
     attachment = Attachment.find(params[:id])
-
+    @attachment_id = attachment.id
     if attachment.attachable_type == "Question"
       question = Question.find(attachment.attachable_id)
       if question.user_id == current_user.id
         attachment.destroy
-        flash[:notice] = 'Attachment destroy'
       end
-      redirect_to question_path(question)
+      render "question_file.delete"
     end
 
     if attachment.attachable_type == "Answer"
