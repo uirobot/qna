@@ -6,7 +6,7 @@
       = f.text_area :body, value: @question.body, class: 'form-control'
     .form-group
       = f.fields_for :attachments do |attach|
-        = render 'attachment_fields', f: attach
+        / = render 'attachment_fields', f: attach
       h5
         = link_to_add_association 'add file', f, :attachments
     ul

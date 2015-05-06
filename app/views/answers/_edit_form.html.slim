@@ -13,7 +13,7 @@
     .clearfix
     .form-group
       = f.fields_for :attachments do |attach|
-        = render 'questions/answer_attachments_fields', f: attach
+        / = render 'questions/answer_attachments_fields', f: attach
       h5
         = link_to_add_association 'add file', f, :attachments, { partial: 'questions/answer_attachments_fields' }
     .clearfix
