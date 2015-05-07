@@ -17,7 +17,9 @@ class AnswersController < ApplicationController
   end
 
   def update
-    render :edit unless @answer.update(answer_params)
+    unless @answer.update(answer_params)
+      flash[:notice] = 'Take it easy, we got a problem'
+    end
   end
 
   def destroy

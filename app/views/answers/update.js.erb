@@ -1,2 +1,7 @@
-$('#answr_<%= @answer.id %>').empty();
-$('#answr_<%= @answer.id %>').replaceWith('<%= j render @answer %>');
+<% if flash[:notice].nil? %>
+  $('#answr_<%= @answer.id %>').empty();
+  $('#answr_<%= @answer.id %>').replaceWith('<%= j render @answer %>');
+<% else %>
+  $('#answr_<%= @answer.id %>').append('<%= j render partial: "questions/flash_notice", locals: { alert_text: flash[:notice]} %>');
+  <% flash.clear() %>
+<% end %>

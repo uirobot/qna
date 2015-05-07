@@ -9,12 +9,10 @@ class QuestionsController < ApplicationController
   def show
     @answers = @question.answers.best_first
     @answer = @question.answers.build
-    @answer.attachments.build
   end
 
   def new
     @question = Question.new
-    @question.attachments.build
   end
 
   def edit
@@ -33,7 +31,9 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    render :edit unless @question.update(question_params)
+    unless @question.update(question_params)
+      flash[:notice] = 'Take it easy, we got a problem'
+    end
   end
 
   def destroy

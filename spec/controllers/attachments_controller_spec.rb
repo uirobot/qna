@@ -11,10 +11,10 @@ RSpec.describe AttachmentsController, type: :controller do
         question.attachments << attachment
         @user.questions << question
       end
-      it 'deletes question' do
+      it 'deletes attachments' do
         expect { delete :destroy, id: attachment }.to change(Attachment, :count).by(-1)
       end
-      it 'redirect to question page' do
+      it 'redirect to attachments page' do
         delete :destroy, id: attachment
         expect(response).to redirect_to question_path(question)
       end
@@ -26,7 +26,7 @@ RSpec.describe AttachmentsController, type: :controller do
         question.user = user2
         question.attachments << attachment
       end
-      it 'trying to deletes question' do
+      it 'trying to deletes attachments' do
         expect { delete :destroy, id: attachment }.to_not change(Attachment, :count)
       end
     end

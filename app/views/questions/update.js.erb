@@ -1,2 +1,7 @@
-$('#question-block').empty();
-$('#question-block').append('<%= j render @question %>');
+<% if flash[:notice].nil? %>
+  $('#question-block').empty();
+  $('#question-block').append('<%= j render @question %>');
+<% else %>
+  $('#question-block').append('<%= j render partial: "flash_notice", locals: { alert_text: flash[:notice]} %>');
+  <% flash.clear() %>
+<% end %>
