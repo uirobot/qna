@@ -14,7 +14,7 @@ feature 'Authenticate User can delete answers', %q{'
     log_in(user)
     user_answer
     visit question_path(question)
-    click_on 'delete answer'
+    page.find(".delete-answer").click
     expect(page).not_to have_content user_answer.body
   end
 
@@ -22,6 +22,6 @@ feature 'Authenticate User can delete answers', %q{'
     log_in(user)
     user_answer2
     visit question_path(question)
-    expect(page).not_to have_content 'delete answer'
+    expect(page).not_to have_css(".delete-answer")
   end
 end

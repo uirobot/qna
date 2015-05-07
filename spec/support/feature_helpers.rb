@@ -7,6 +7,7 @@ module FeatureHelpers
   end
 
   def attach_files
+    click_on 'add file'
     attach_file 'File', "#{Rails.root}/spec/spec_helper.rb"
     click_on 'add file'
     within all('.add_file_form').last do

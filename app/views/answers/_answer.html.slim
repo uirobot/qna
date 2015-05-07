@@ -16,7 +16,7 @@ li.answer-item id="answr_#{answer.id}"
           = link_to correct_answer_question_answer_path(@question, answer), method: :patch do
             = fa_icon "thumbs-down 2x", class: 'text-muted correct-answer'
         - else
-          = link_to correct_answer_question_answer_path(@question, answer), method: :patch do
+          = link_to correct_answer_question_answer_path(@question, answer), class:'correct-answer', method: :patch do
             = fa_icon "thumbs-up 2x", class: 'text-muted'
       - if current_user && answer.user_id == current_user.id
         = link_to edit_question_answer_path(@question, answer), class: 'edit-answer', remote: true do

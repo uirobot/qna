@@ -16,7 +16,7 @@ feature 'Question author can mark correct answer', %q{('
     log_in(user)
     visit question_path(question)
     within(:css, "li#answr_#{answer.id}") do
-      expect(page).to have_content "correct answer"
+      expect(page).to have_css(".answer-features .fa-thumbs-up")
     end
   end
 
@@ -24,17 +24,17 @@ feature 'Question author can mark correct answer', %q{('
     log_in(user)
     visit question_path(question2)
     within(:css, "li#answr_#{answer2.id}") do
-      expect(page).not_to have_content "correct answer "
+      expect(page).not_to have_css(".answer-features .fa-thumbs-up")
     end
   end
 
-  scenario 'Question author pressed correct buttons and set correct answer' do
+  scenario 'Question author pressed correct buttons and set correct answer', js: true do
     log_in(user)
     visit question_path(question)
     within "li#answr_#{answer.id}" do
-      click_on "correct answer"
+      page.find(".correct-answer").click
     end
-    expect(page).to have_content('ANSWER')
+    expect(page).not_to have_css(".answer-list .fa-check")
   end
 
   scenario 'Best answers goes first' do
@@ -42,7 +42,7 @@ feature 'Question author can mark correct answer', %q{('
     visit question_path(question)
     within ".answer-item:last-child" do
       expect(page).to have_content answer3.body
-      click_on "correct answer"
+      page.find(".correct-answer").click
     end
     within ".answer-item:first-child" do
       expect(page).to have_content answer3.body

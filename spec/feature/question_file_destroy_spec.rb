@@ -18,19 +18,21 @@ feature 'Delete files from question', %q{
     click_on 'Send question'
   end
 
-  scenario 'File can delete only author' do
-    within '.file-item' do
-      click_on 'delete file'
+  scenario 'File can delete only author', js: true do
+    page.find(".question-header a").click
+    within '.question-edit-form' do
+      first(:link, 'delete file').click
     end
-    expect(page).not_to have_link 'spec_helper.rb', href: '/uploads/attachment/file/1/spec_helper.rb'
+    click_on "Edit question"
+    expect(page).not_to have_link 'spec_helper.rb', href: '/uploads/attachment/file/1/rails_helper.rb'
   end
 
-  scenario 'Not author can delete question files' do
+  scenario 'Not author can delete question files', js: true do
     click_on 'Log out'
     log_in(user2)
     visit root_path
     click_on 'its a title'
-    expect(page).not_to have_link 'delete file'
+    expect(page).not_to have_css(".question-header a")
   end
 
 end
