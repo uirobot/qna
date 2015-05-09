@@ -1,8 +1,38 @@
 .answers-list {
+  margin-bottom: 15px;
+  list-style-type: none;
+  margin-left: 25px;
+  padding-top: 8px;
   .answer-item {
-    margin-bottom:15px;
+    margin-bottom:10px;
+    border-bottom: 1px solid #CCC;
+    .fa-check {
+      margin-left: -20px;
+      display: block;
+      float: left;
+      font-size:18px;
+      color: #9CB1C1;
+      }
+    .answer-features {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      margin-left: 7px;
+      opacity:0.5;
+      
+      .fa-2x { font-size: 20px; }
+      i { margin-right: 15px; }
+      .fa-thumbs-up.text-muted { }
+      .edit-answer {
+        color:green;
+        font-size: 11px;
+        padding-left: 20px;
+        padding-right: 10px;
+      }
+
+    }
   }
 }
+.question-header a .fa.fa-pencil { margin-left:10px; opacity: 0.5;}
 .logo {
   a {
     padding: 10px 23px;
@@ -16,11 +46,6 @@
 
 .login-block {
   margin-top:10px;
-}
-.edit-answer {
-  color:green;
-  font-size: 11px;
-  padding-right: 15px;
 }
 .form-group input.inline-edit-form {
   width:700px;
@@ -40,4 +65,27 @@
   span {
     margin: 0 10px;
   }
+}
+.files-attachments {
+  ul {
+    padding-left: 20px;
+    list-style-type: none;
+    .fa-file-o {margin-right: 10px;}
+  }
+  a {  }
+  .delete-link a {
+    color:red;
+    margin-left:20px;
+    font-size:11px;
+  }
+}
+.file-item {
+  .delete-link a {
+    color:red;
+    margin-left:20px;
+    font-size:11px;
+  }
+}
+.answer-edit-form {
+  padding-bottom: 10px;
 }

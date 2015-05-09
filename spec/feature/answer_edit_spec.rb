@@ -14,10 +14,10 @@ feature 'Authenticate User can edit own answers on question page', %q{('
     log_in(user)
     visit question_path(question)
     within(:css, "li#answr_#{answer.id}") do
-      expect(page).to have_content "edit answer"
+      expect(page).to have_css(".delete-answer")
     end
     within(:css, "li#answr_#{answer2.id}") do
-      expect(page).not_to have_content "edit answer"
+      expect(page).to_not have_css(".edit-answer")
     end
   end
 
@@ -26,7 +26,7 @@ feature 'Authenticate User can edit own answers on question page', %q{('
     visit question_path(question)
     expect(page).not_to have_selector('input[type=input]')
     within(:css, "li#answr_#{answer.id}") do
-      click_on "edit answer"
+      page.find(".edit-answer").click
       expect(page).to have_selector('input[type=text]')
     end
   end
@@ -34,7 +34,7 @@ feature 'Authenticate User can edit own answers on question page', %q{('
   scenario 'User can edit own answer', js: true do
     log_in(user)
     visit question_path(question)
-    click_on "edit answer"
+    page.find(".edit-answer").click
     within(:css, "li#answr_#{answer.id}") do
       find('.inline-edit-form').set('my new answer')
       click_on 'Изменить'

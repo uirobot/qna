@@ -8,7 +8,15 @@
     .form-group
       = f.label :body
       = f.text_area :body, class: 'form-control'
+    .form-group
+      = f.fields_for :attachments do |attach|
+        = render 'attachment_fields', f: attach
+      h5
+        = link_to_add_association 'add file', f, :attachments
+
     = f.submit 'Send question', class: 'btn btn-default'
+
+
 .col-lg-4
   blockquote
     h4 instructions

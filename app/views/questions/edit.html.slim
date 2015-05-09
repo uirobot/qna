@@ -8,6 +8,15 @@
     .form-group
       = f.label :body
       = f.text_area :body, class: 'form-control'
+    .form-group
+      - @question.attachments.each do |a|
+        li.file-item
+          = link_to a.file.identifier, a.file.url
+          - if current_user && current_user.id == @question.user_id
+            span.delete-link
+              = link_to "delete file", attachment_path(a), method: :delete
+    
+
     = f.submit 'Edit question', class: 'btn btn-default'
 .col-lg-4
   blockquote

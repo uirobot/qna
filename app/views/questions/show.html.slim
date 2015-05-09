@@ -1,6 +1,7 @@
 .col-lg-12
-  h3 = @question.title
-  p = @question.body
+  #question-block
+    = render @question
+
   hr
   h4 Answers
   .answers-list
@@ -10,4 +11,9 @@
     .form-group
       = f.label :body
       = f.text_area :body, class: 'form-control'
+    .form-group
+      = f.fields_for :attachments do |attach|
+        = render 'answer_attachments_fields', f: attach
+      h5
+        = link_to_add_association 'add file', f, :attachments, { partial: 'answer_attachments_fields' }
     = f.submit 'Send answer', class: 'btn btn-default'

@@ -3,8 +3,11 @@ class Answer < ActiveRecord::Base
 
   belongs_to :question
   belongs_to :user
+  has_many :attachments, as: :attachable
 
   validates :body, presence: true
+
+  accepts_nested_attributes_for :attachments, allow_destroy: true, :reject_if => :all_blank
 
   def best
     Answer.where(question: question).update_all(correct: false)

@@ -17,7 +17,9 @@ class AnswersController < ApplicationController
   end
 
   def update
-    render :edit unless @answer.update(answer_params)
+    unless @answer.update(answer_params)
+      flash[:notice] = 'Take it easy, we got a problem'
+    end
   end
 
   def destroy
@@ -41,7 +43,7 @@ class AnswersController < ApplicationController
   private
 
   def answer_params
-    params.require(:answer).permit(:body)
+    params.require(:answer).permit(:body, attachments_attributes: [:id, :file, :_destroy])
   end
 
   def load_question

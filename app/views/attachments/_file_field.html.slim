@@ -1,0 +1,4 @@
+li class="file-item file-id-#{a.id}"
+  = link_to a.file.identifier, a.file.url
+  span.delete-link
+    = link_to "delete file", attachment_path(a), method: :delete, remote: true
